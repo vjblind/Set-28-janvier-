@@ -1,0 +1,74 @@
+///////////////////////////////////////////
+//          FRENCHCORE MELODIQUE         //
+///////////////////////////////////////////
+
+
+
+setcpm(90)
+
+
+//MELODIE
+
+const pianoMelo = note("d4 ~ a4 ~ f4 ~ e4 ~")
+    .s("piano")
+    .gain(0.8)
+    .room(0.4)
+    .lpf(500)
+
+const high = note("d6 ~ a6 ~ f6 ~ e6 ~")
+  .s("piano")
+  .slow(8)
+  .gain(0.35)
+  .room(0.6)
+  .lpf(1800)
+
+const violon = note("[d4 a4 f4 e4]")
+    .s("gm_violin")
+    .slow(32)
+    .gain(0.5)
+    .room(0.4)
+    .lpf(1000)
+
+
+
+//$: pianoMelo
+// $: high
+
+//IDEE A REVOIR
+// const violondrop = arrange (
+//   [0,  violon.slow(32)],  // Super étiré (joue 1 fois sur 32 cycles)
+//   [32, violon.slow(16)],  // 2x plus rapide (joue 1 fois de 32 à 48)
+//   [48, violon.slow(8)],   // 2x plus rapide (joue 1 fois de 48 à 56)
+//   [56, violon.slow(4)],   // (joue 1 fois de 56 à 60)
+//   [60, violon.slow(2)],   // (joue 1 fois de 60 à 62)
+//   [62, violon.slow(1)],   // Vitesse normale (joue 1 fois de 62 à 63)
+//   [63, violon.fast(4)]
+// )
+
+//$: violon
+
+
+
+//KICK
+
+const hihat = s("hh")
+  .struct("X - X - X - X X X")
+  .slow(1)
+  .gain(0.2)
+  .hpf(15000)
+
+const kick = s("bd ~ bd bd")
+  //.struct(" X - X X")
+  .lpf(300)
+
+const snare = s("cp")
+  .struct(" X - - -")
+  .gain(0.7)
+  .lpf(600)
+  
+
+
+
+$: hihat
+$: kick
+$: snare
