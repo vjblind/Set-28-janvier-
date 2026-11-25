@@ -1,0 +1,154 @@
+
+// ==========================================
+// ACID TERRITORIES
+// Wendy Yashira / Lumpérica Editorial
+// Live coding composition - 10 minutes
+// 120 BPM - C minor
+// ==========================================
+
+setcpm(120/4);
+
+// 1. THE PORTAL - 00:00 to 02:00
+
+const portal = note("<c3 eb3 g3 bb3>")
+  .slow(4)
+  .s("sine")
+  .lpf(1000)
+  .room(0.9)
+  .gain(0.55);
+
+const portalEcho = note("<c4 g4 eb4 bb4>")
+  .slow(8)
+  .s("triangle")
+  .room(0.95)
+  .delay(0.5)
+  .gain(0.25);
+
+// 2. ACID AWAKENING - 02:00 to 04:00
+
+const acidIntro = note("c2 ~ c2 eb2 ~ g2 ~ bb1 ~")
+  .s("sawtooth")
+  .lpf(700)
+  .gain(0.55)
+  .delay(0.2);
+
+const awakeningBeat = s("bd*4")
+  .bank("RolandTR909")
+  .gain(0.8);
+
+const awakeningHat = s("~ hh ~ hh ~ hh ~ hh")
+  .gain(0.3);
+
+// 3. TERRITORIES - 04:00 to 06:30
+
+const teknoKick = s("bd*4")
+  .bank("RolandTR909")
+  .gain(1);
+
+const teknoBass = note("c2 c2 ~ eb2 c2 ~ g1 bb1")
+  .s("sawtooth")
+  .lpf("<500 900 1300 700>")
+  .gain(0.65)
+  .fast(2);
+
+const teknoPerc = s("~ cp ~ cp, hh*8")
+  .bank("RolandTR909")
+  .gain(0.45);
+
+const teknoAcid = note("c3 eb3 c3 g2 bb2 g2 eb3 c3")
+  .s("sawtooth")
+  .lpf("<500 1000 1800 800>")
+  .fast(2)
+  .delay(0.25)
+  .gain(0.35);
+
+// 4. RESISTANCE - 06:30 to 08:30
+
+const industrialKick = s("bd*4")
+  .bank("RolandTR909")
+  .gain(1);
+
+const industrialPerc = s("~ sd ~ sd, hh*16")
+  .bank("RolandTR909")
+  .gain(0.55)
+  .fast(2);
+
+const industrialBass = note("c1 c1 c1 eb1 g1 c1 bb1 g1")
+  .s("sawtooth")
+  .lpf("<400 900 1600 600>")
+  .fast(2)
+  .gain(0.65);
+
+const industrialAcid = note("c3 ~ eb3 g3 bb2 ~ c3 eb3")
+  .s("sawtooth")
+  .lpf("<700 1500 2200 500>")
+  .fast(2)
+  .delay(0.3)
+  .gain(0.4);
+
+// 5. AFTER THE RAVE - 08:30 to 10:00
+
+const afterRave = note("<c3 eb3 g3 bb3>")
+  .slow(4)
+  .s("sine")
+  .lpf(700)
+  .room(0.95)
+  .gain(0.5);
+
+const finalEcho = note("<g4 eb4 c4>")
+  .slow(8)
+  .s("triangle")
+  .room(0.95)
+  .delay(0.6)
+  .gain(0.3);
+
+
+// ==========================================
+// ARRANGEMENT
+// 300 cycles = 10 minutes at 120 BPM
+// ==========================================
+
+// Atmospheric layer
+$: arrange(
+  [60, stack(portal, portalEcho)],
+  [60, portal],
+  [75, silence],
+  [60, silence],
+  [45, stack(afterRave, finalEcho)]
+);
+
+// Drums
+$: arrange(
+  [60, silence],
+  [60, awakeningBeat],
+  [75, teknoKick],
+  [60, industrialKick],
+  [45, silence]
+);
+
+// Bass
+$: arrange(
+  [60, silence],
+  [60, acidIntro],
+  [75, teknoBass],
+  [60, industrialBass],
+  [45, silence]
+);
+
+// Percussion
+$: arrange(
+  [60, silence],
+  [60, awakeningHat],
+  [75, teknoPerc],
+  [60, industrialPerc],
+  [45, silence]
+);
+
+// Acid melodies
+$: arrange(
+  [60, silence],
+  [60, silence],
+  [75, teknoAcid],
+  [60, industrialAcid],
+  [45, silence]
+);
