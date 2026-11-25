@@ -24,15 +24,16 @@ const high = note("d6 ~ a6 ~ f6 ~ e6 ~")
 
 const violon = note("[d4 a4 f4 e4]")
     .s("gm_violin")
-    .slow(32)
+    .slow(16)
     .gain(0.5)
     .room(0.4)
     .lpf(1000)
 
 
 
-//$: pianoMelo
+// $: pianoMelo
 // $: high
+// $: violon
 
 //IDEE A REVOIR
 // const violondrop = arrange (
@@ -44,8 +45,6 @@ const violon = note("[d4 a4 f4 e4]")
 //   [62, violon.slow(1)],   // Vitesse normale (joue 1 fois de 62 à 63)
 //   [63, violon.fast(4)]
 // )
-
-//$: violon
 
 
 
@@ -69,6 +68,47 @@ const snare = s("cp")
 
 
 
-$: hihat
-$: kick
-$: snare
+// $: hihat
+// $: kick
+// $: snare
+
+
+
+
+const bass = s("sin")
+  .note("c1")
+  .struct(" X - ")
+  .fast(4)
+  .dist(3)
+  .gain(3)
+  .lpf(200)
+
+const kickbass = s("bd")
+  .struct(" X - X - X - X - X - X - X - X X")
+  .dist(2)
+  .slow(4)
+  .gain(2)
+  .lpf(300)
+
+const snarebass = s("ht")
+  .struct(" - X ")
+  .gain(1)
+
+const hihatbass = s("hh")
+  .struct(" X - X - X - X - X - X - X - X -")
+  .slow(4)
+  .gain(0.9)
+  .hpf(15000)
+
+const melodrop = s("sin")
+  .note("d4 ~ a4 ~ f4 ~ e4 ~")
+  .slow(4)
+
+$: bass
+$: kickbass
+$: snarebass
+$: hihatbass
+$: melodrop
+// $: pianoMelo
+// $: high.dist(1.5).gain(0.5)
+// $: violon.dist(1.5)
